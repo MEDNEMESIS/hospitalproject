@@ -1,0 +1,139 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+        <!-- App container starts -->
+        <div class="app-container">
+
+          <!-- App hero header starts -->
+          <div class="app-hero-header d-flex align-items-center">
+
+            <!-- Breadcrumb starts -->
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
+                <a href="index.html">Home</a>
+              </li>
+              
+              <li class="breadcrumb-item text-primary" aria-current="page">
+                Add Patient
+              </li>
+            </ol>
+            <!-- Breadcrumb ends -->
+
+            <!-- Sales stats starts -->
+            <div class="ms-auto d-lg-flex d-none flex-row">
+              <div class="d-flex flex-row gap-1 day-sorting">
+                <button class="btn btn-sm btn-primary">Today</button>
+                <button class="btn btn-sm">7d</button>
+                <button class="btn btn-sm">2w</button>
+                <button class="btn btn-sm">1m</button>
+                <button class="btn btn-sm">3m</button>
+                <button class="btn btn-sm">6m</button>
+                <button class="btn btn-sm">1y</button>
+              </div>
+            </div>
+            <!-- Sales stats ends -->
+
+          </div>
+          <!-- App Hero header ends -->
+
+     
+      <div class="row gx-3">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-body">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" >
+                  ADD PATIENT
+                </button>
+                
+<!-- Modal HTML structure -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" >ADD PATIENT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <!-- Modal Body -->
+      <div class="modal-body">
+        
+    <form method="POST">
+      {% csrf_token %}
+      {{form|crispy}}
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary">
+        <button type="reset" class="btn btn-primary">reset</button>
+     
+      </div>
+
+  </form>
+  {% if message%}
+  {{message}}
+  {% endif%}
+
+
+
+
+      
+      </div>
+      
+
+     
+      
+    </div>
+  </div>
+</div>
+    <table class="table table-striped">
+      <br></br>
+      <thead>
+        <tr>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Id</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Name</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Gender</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Address</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Weight</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Blood type</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Next of kin</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Kin contact</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Age</th>
+          <th scope="col" class="bg-primary text-white font-weight-bold ">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for patient in patients%}
+          <tr>
+            <th scope="row">{{patient.id}}</th>
+            <td>{{patient.name}}</td>
+            <td>{{patient.gender}}</td>
+            <td>{{patient.address}}</td>
+            <td>{{patient.weight}}</td>
+            <td>{{patient.blood_type}}</td>
+            <td>{{patient.next_of_kin}}</td>
+            <td>{{patient.kin_contact}}</td>
+            <td>{{patient.age}}</td> 
+
+            <td>
+              <a href="{% url 'edit_patient_page' patient.id %}"class="btn btn-sm btn-warning" ><i class="ri-edit-box-line" ></i></a> |
+              <a href="{% url "delete_patient_page" patient.id %}"
+              onclick= "return confirm('Are you sure  you want to delete {{patient.name}}?')"class="btn btn-sm btn-danger">
+              <i class="ri-delete-bin-line"></i></a>
+            </td>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}
