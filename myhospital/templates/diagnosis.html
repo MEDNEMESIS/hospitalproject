@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Diagnosis Information</title>
+</head>
+<body>
+    <div class="main">
+        <nav class="navbar">
+         <div class="navbar">
+             <div class="logo"><a href="#">MK hospital</a></div>
+             <ul>
+                <li ><a href="{% url 'patients_page' %}">PATIENT</a></li>
+                <li ><a href="{% url 'doctors_page' %}">DOCTOR</a></li>
+                <li ><a href="{% url 'diagnosis_page' %}">DIAGNOSIS</a></li>
+                <li ><a href="{% url 'payment_page' %}">PAYMENT</a></li>
+                <li ><a href="{% url 'treatment_page' %}">TREATMENT</a></li>
+                <button><a href="{% url 'login_page' %}">LOGOUT</a></button>
+             </ul>
+         </div>
+        </nav>
+    <h1>Diagnosis Information</h1>
+    <form action="diagnosis.html" method="post">
+        
+                <label for="id">Diagnosis ID:</label>
+                <input type="text" id="id" name="id" required><br>
+            
+               <label for="patient_id">Patient ID:</label>
+                <input type="text" id="patient_id" name="patient_id" required><br>
+          
+                <label for="doctor_id">Doctor ID:</label>
+                <input type="text" id="doctor_id" name="doctor_id" required><br>
+          
+               <label for="diagnosis_id">Diagnosis ID:</label>
+                <input type="text" id="diagnosis_id" name="diagnosis_id" required><br>
+           
+               <label for="description">Description:</label>
+               <textarea id="description" name="description" required></textarea><br>
+           
+      
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <h3>Diagnosis Records</h3>
+    <table border="0">
+        <thead>
+            <tr>
+                <th>Diagnosis ID</th>
+                <th>Patient ID</th>
+                <th>Doctor ID</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data Row -->
+            <tr>
+                <td>5</td>
+                <td>2</td>
+                <td>3</td>
+                <td>flue</td>
+            </tr>
+
+
+            <tr>
+                <td>5</td>
+                <td>2</td>
+                <td>3</td>
+                <td>flue</td>
+            </tr>
+
+
+            <tr>
+                <td>5</td>
+                <td>2</td>
+                <td>3</td>
+                <td>flue</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>2</td>
+                <td>3</td>
+                <td>flue</td>
+            </tr>
+
+             <tr>
+                <td>5</td>
+                <td>2</td>
+                <td>3</td>
+                <td>flue</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+   
+</body>
+
+
+
+</html>
